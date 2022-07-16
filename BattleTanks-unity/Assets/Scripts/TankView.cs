@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//View is respocerbul for visualthings like ui,and ony comunicates with controller
+//View is responcerble for visualthings like ui,and ony comunicates with controller
 public class TankView : MonoBehaviour
 {
     private TankController _tankController;
@@ -10,11 +10,13 @@ public class TankView : MonoBehaviour
 
     private float _rotation;
 
-    public Rigidbody _playerRb;
+    public Rigidbody playerRb;
+
+    public MeshRenderer[] childs;
 
 
     // Start is called before the first frame update
-    void Start()
+    void  Start()
     {
         GameObject cam = GameObject.Find("Main Camera");//sets cam transfom to transform of this scripts object
         cam.transform.SetParent(transform);
@@ -28,11 +30,11 @@ public class TankView : MonoBehaviour
         
         if (_movement != 0)
         {
-            _tankController.Move(_movement,_tankController.GetTankModel()._movementSpeed);
+            _tankController.Move(_movement,_tankController.GetTankModel().movementSpeed);
         }
         if (_rotation != 0)
         {
-            _tankController.Rotate(_rotation,_tankController.GetTankModel()._rotationSpeed);
+            _tankController.Rotate(_rotation,_tankController.GetTankModel().rotationSpeed);
         }
             
      
@@ -45,15 +47,23 @@ public class TankView : MonoBehaviour
 
     }
 
-    public void SetTankController(TankController tankController)
+    public void SetTankController(TankController TankController)
     {
-        _tankController = tankController;
+        _tankController = TankController;
 
     }
 
     public Rigidbody GetRidgidBody()
     {
 
-        return _playerRb;
+        return playerRb;
+    }
+
+    public void  ChangeColor(Material color)
+    {
+        for (int i = 0; i<childs.Length; i++)
+        {
+            childs[i].material=color;
+        }
     }
 }

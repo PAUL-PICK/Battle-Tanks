@@ -215,7 +215,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3997e0d9c6822974eb180b0fbd469e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerRb: {fileID: 212117547775721715}
+  playerRb: {fileID: 212117547775721715}
+  childs:
+  - {fileID: 759481812769557573}
+  - {fileID: 759481812769557571}
+  - {fileID: 759481812769557581}
+  - {fileID: 759481812769557575}
 --- !u!54 &212117547775721715
 Rigidbody:
   m_ObjectHideFlags: 0

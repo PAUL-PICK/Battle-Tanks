@@ -7,25 +7,26 @@ public class TankController // dos not need MonoBehavier
     private TankView _tankView;
     private Rigidbody _playerRb;
 
-    public TankController(TankModel tankModel, TankView tankView)   
+    public TankController(TankModel TankModel, TankView TankView)   
     {// public function inside of class is called a constructer()
-        _tankModel = tankModel;
-        _tankView = GameObject.Instantiate<TankView>(tankView);
+        _tankModel = TankModel;
+        _tankView = GameObject.Instantiate<TankView>(TankView);
         _playerRb = _tankView.GetRidgidBody();
         _tankView.SetTankController(this);// this refers to this scrip 
-        _tankModel.SetTankController(this);   
+        _tankModel.SetTankController(this);
+        _tankView.ChangeColor(_tankModel.color);
 
     }
 
-    public void Move(float movement, float movementSpeed)
+    public void Move(float Movement, float MovementSpeed)
     {
-        _playerRb.velocity = _tankView.transform.forward * movement * movementSpeed;
+        _playerRb.velocity = _tankView.transform.forward * Movement * MovementSpeed;
 
     }
 
-    public void Rotate(float rotate, float rotateSpeed)
+    public void Rotate(float Rotate, float RotateSpeed)
     {
-        Vector3 vector = new Vector3(0f, rotate * rotateSpeed, 0f);
+        Vector3 vector = new Vector3(0f, Rotate * RotateSpeed, 0f);
         Quaternion deltaRotation = Quaternion.Euler(vector * Time.deltaTime);
         _playerRb.MoveRotation(_playerRb.rotation * deltaRotation);
 
